@@ -12,19 +12,19 @@ import java.util.List;
 
 @Controller
 // All the mappings inside this class will start with /posts in their URL.
-@RequestMapping("/posts")
+@RequestMapping
 public class PostController {
 
     @Autowired
     private PostService postService;
 
-    @GetMapping
+    @GetMapping("/posts")
     public String listPosts(Model model) {
         List<Post> posts = postService.findAll();
         model.addAttribute("posts", posts);  // Adding the list of posts to the model to be accessible by the view template.
-        // Returning the view name "post/list" which maps to the post/list.html view template.
+        // Returning the view name "list" which maps to the list.html view template.
         // This template will use the posts data to render the HTML.
-        return "post/list";
+        return "list";
     }
 
     @GetMapping("/{id}")
@@ -32,9 +32,9 @@ public class PostController {
         Post post = postService.findByID(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));  // Fetching the post by id or throwing an exception if not found.
         model.addAttribute("post", post);  // Adding the post to the model to be accessible by the view template.
-        // Returning the view name "post/view" which maps to the post/view.html view template.
+        // Returning the view name "view" which maps to the view.html view template.
         // This template will use the post data to render the HTML.
-        return "post/view";
+        return "view";
     }
 
     @PostMapping

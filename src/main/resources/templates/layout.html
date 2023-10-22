@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Blog</title>
+    <!-- Common head elements like CSS/JS links -->
+</head>
+<body>
+<!-- Common header -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- Content section to be replaced by specific page content -->
+<div th:fragment="content">
+    <!-- Content goes here -->
+</div>
+
+<!-- Common footer -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
