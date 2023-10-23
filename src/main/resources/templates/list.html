@@ -5,30 +5,35 @@
     <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post : ${posts}">
-        <td th:text="${post.title}">Title</td>
-        <td th:text="${post.author}">Author</td>
-        <td>
-            <a th:href="@{/posts/{id}(id=${post.id})}">View</a>
-            <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
-            <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
-                <input type="hidden" name="_method" value="delete" />
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<br>
-<a href="/">Go Home</a>
+    <div class="page-content">
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.title}">Title</td>
+                <td th:text="${post.author}">Author</td>
+                <td>
+                    <a th:href="@{/posts/{id}(id=${post.id})}">View</a>
+                    <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+                    <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <a href="/">Go Home</a>
+    </div>
+    <footer style="margin-top: 50px; text-align: center;">
+        <p>&copy; 2023 Renos Kerkides. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>

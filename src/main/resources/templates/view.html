@@ -7,16 +7,21 @@
     <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
 </head>
 <body>
-    <h1 th:text="${post.title}">Title</h1>
-    <p th:text="${post.content}">Content</p>
-    <p th:text="${post.author}">Author</p>
-    <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
-    <br>
-    <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
-        <input type="hidden" name="_method" value="delete" />
-        <button type="submit">Delete</button>
-    </form>
-    <br>
-    <a href="/">Go Home</a>
+    <div class="page-content">
+        <h1 th:text="${post.title}">Title</h1>
+        <p th:text="${post.content}">Content</p>
+        <p><strong th:text="${post.author}">Author</strong></p>
+        <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+        <br>
+        <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit">Delete</button>
+        </form>
+        <br>
+        <a href="/">Go Home</a>
+    </div>
+    <footer style="margin-top: 50px; text-align: center;">
+        <p>&copy; 2023 Renos Kerkides. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
