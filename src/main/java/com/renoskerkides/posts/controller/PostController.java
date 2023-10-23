@@ -18,11 +18,6 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/")
-    public String home() {
-        return "home";
-    }
-
     @GetMapping("/posts")
     public String listPosts(Model model) {
         List<Post> posts = postService.findAll();
