@@ -48,6 +48,14 @@ public class PostController {
         return "new";
     }
 
+    @GetMapping("/posts/{id}/edit")
+    public String editPost(@PathVariable Long id, Model model) {
+        Post post = postService.findByID(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));
+        model.addAttribute("post", post);
+        return "edit";
+    }
+
     @PostMapping("/posts")
     public String createPost(@ModelAttribute Post post) {
         postService.save(post);
