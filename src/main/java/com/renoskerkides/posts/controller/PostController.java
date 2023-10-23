@@ -18,6 +18,11 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("/posts")
     public String listPosts(Model model) {
         List<Post> posts = postService.findAll();
@@ -27,7 +32,7 @@ public class PostController {
         return "list";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable Long id, Model model) {
         Post post = postService.findByID(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));  // Fetching the post by id or throwing an exception if not found.
@@ -37,13 +42,19 @@ public class PostController {
         return "view";
     }
 
-    @PostMapping
+    @GetMapping("/posts/new")
+    public String newPost(Model model) {
+        model.addAttribute("post", new Post());  // This line is added to ensure a Post object is available to the Thymeleaf template
+        return "new";
+    }
+
+    @PostMapping("/posts")
     public String createPost(@ModelAttribute Post post) {
         postService.save(post);
         return "redirect:/posts";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/posts/{id}")
     public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
         Post existingPost = postService.findByID(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));
@@ -54,7 +65,7 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @PostMapping("/{id}/delete")
+    @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable Long id) {
         postService.deleteById(id);
         return "redirect:/posts";
