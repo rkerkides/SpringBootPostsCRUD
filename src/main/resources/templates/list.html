@@ -9,6 +9,7 @@
 </thead>
 <tbody>
     <tr th:each="post : ${posts}">
+        <br>
         <td th:text="${post.title}">Title</td>
         <td th:text="${post.author}">Author</td>
         <td>
@@ -16,5 +17,7 @@
             <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
         </td>
     </tr>
+    <br>
+    <a href="/">Go Home</a>
 </tbody>
 </html>
