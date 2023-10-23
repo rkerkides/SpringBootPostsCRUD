@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="${post.title + ' - My Blog'}">Title - My Blog</title>
+    <title th:text="${post.title + ' - My Blog'}">View Post</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
 </head>
 <body>
-
-<h1 th:text="${post.title}">Title</h1>
-<p th:text="${post.content}">Content</p>
-<p th:text="${post.author}">Author</p>
-<a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
-<br>
-<form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
-    <input type="hidden" name="_method" value="delete" />
-    <button type="submit">Delete</button>
-</form>
-<br>
-<a href="/">Go Home</a>
+    <h1 th:text="${post.title}">Title</h1>
+    <p th:text="${post.content}">Content</p>
+    <p th:text="${post.author}">Author</p>
+    <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+    <br>
+    <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
+        <input type="hidden" name="_method" value="delete" />
+        <button type="submit">Delete</button>
+    </form>
+    <br>
+    <a href="/">Go Home</a>
 </body>
 </html>
