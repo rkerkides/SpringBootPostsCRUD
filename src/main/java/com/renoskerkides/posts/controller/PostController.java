@@ -12,13 +12,13 @@ import java.util.List;
 
 @Controller
 // All the mappings inside this class will start with /posts in their URL.
-@RequestMapping
+@RequestMapping("/posts")
 public class PostController {
 
     @Autowired
     private PostService postService;
 
-    @GetMapping("/posts")
+    @GetMapping
     public String listPosts(Model model) {
         List<Post> posts = postService.findAll();
         model.addAttribute("posts", posts);  // Adding the list of posts to the model to be accessible by the view template.
@@ -27,7 +27,7 @@ public class PostController {
         return "list";
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/{id}")
     public String viewPost(@PathVariable Long id, Model model) {
         Post post = postService.findByID(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));  // Fetching the post by id or throwing an exception if not found.
@@ -37,13 +37,13 @@ public class PostController {
         return "view";
     }
 
-    @GetMapping("/posts/new")
+    @GetMapping("/new")
     public String newPost(Model model) {
         model.addAttribute("post", new Post());  // This line is added to ensure a Post object is available to the Thymeleaf template
         return "new";
     }
 
-    @GetMapping("/posts/{id}/edit")
+    @GetMapping("/{id}/edit")
     public String editPost(@PathVariable Long id, Model model) {
         Post post = postService.findByID(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));
@@ -51,13 +51,13 @@ public class PostController {
         return "edit";
     }
 
-    @PostMapping("/posts")
+    @PostMapping
     public String createPost(@ModelAttribute Post post) {
         postService.save(post);
         return "redirect:/posts";
     }
 
-    @PostMapping("/posts/{id}")
+    @PostMapping("/{id}")
     public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
         Post existingPost = postService.findByID(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));
@@ -68,7 +68,7 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @PostMapping("/posts/{id}/delete")
+    @PostMapping("/{id}/delete")
     public String deletePost(@PathVariable Long id) {
         postService.deleteById(id);
         return "redirect:/posts";
