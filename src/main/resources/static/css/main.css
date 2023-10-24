@@ -21,7 +21,13 @@ body {
 /* Ensure content takes up all available space */
 .page-content {
   flex: 1 0 auto;
-  margin: 20px; /* Moved margin from body to here */
+  margin: 20px;
+}
+
+.homepage-content {
+  flex: 1 0 auto;
+  margin: 20px;
+  text-align: center;
 }
 
 /* Typography */
